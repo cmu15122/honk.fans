@@ -29,7 +29,11 @@ function doGet(request) {
 		redirect = lookup('Links', ' ');
 	if(!redirect)
 		return;
-	return HtmlService.createHtmlOutput('<script>window.top.location = \'' + redirect + '\'</script>');
+
+	if(request.parameter.plaintext)
+		return ContentService.createTextOutput(redirect);
+	else
+		return HtmlService.createHtmlOutput('<script>window.top.location = \'' + redirect + '\'</script>');
 }
 
 function lookup(table, key, fallback = null) {
