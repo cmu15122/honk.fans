@@ -15,7 +15,8 @@
 // Copyright (C) 2021, The Vanguard Campaign Corps Mods (vanguardcampaign.org)
 
 async function handler(request: Request) {
-	const redir = await fetch(BACKEND + '?link=' + request.url + '&plaintext=true');
+	const url = new URL(request.url);
+	const redir = await fetch(BACKEND + '?link=' + url.pathname + '&plaintext=true');
 	return Response.redirect(await redir.text(), 302);
 }
 
