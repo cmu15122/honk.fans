@@ -17,8 +17,6 @@
 async function handler(request: Request) {
 	const url = new URL(request.url);
 	const redir = await fetch(BACKEND + '?link=' + url.pathname + '&plaintext=true');
-	console.log(BACKEND + '?link=' + url.pathname + '&plaintext=true');
-	console.log(redir.text());
 	return Response.redirect(await redir.text(), 302);
 }
 
